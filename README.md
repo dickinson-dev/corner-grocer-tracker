@@ -26,7 +26,7 @@ A C++ console application that reads a daily purchase log and produces item freq
 ## How to Run
 
 ### Expected Folder Layout
-
+```text
 CornerGrocer/
 ├── src/
 │   ├── main.cpp
@@ -39,9 +39,10 @@ CornerGrocer/
 │   ├── design-notes.md
 │   └── architecture.md
 └── screenshots/
+```
 
 ### Run Notes (Working Directory)
-This project is typically configured to run with the **working directory set to `data/`** so the input file can be referenced by name:
+This project is configured to run with the **working directory set to `data/`** so the input file can be referenced by name:
 - `CornerGrocerInput.txt`
 
 When the program runs, it writes:
@@ -61,28 +62,29 @@ When the program runs, it writes:
 ## Portfolio Reflection (CS 210 Module Eight Journal)
 
 ### Summarize the project and what problem it was solving.
-For my portfolio artifact, I selected **Project Three: Corner Grocer Item Frequency Tracker**. The program reads a daily purchase log and calculates how often each item appears. It provides a menu-driven interface to look up a single item’s frequency, print all item frequencies, and display a histogram of purchase counts. The program also creates a backup file (`frequency.dat`) automatically at startup.  
-This solves a real operational problem: Corner Grocer wants to reorganize their produce section, and frequency data supports better layout decisions by highlighting which items are purchased most often.
+For my portfolio artifact, I selected **Project Three: Corner Grocer Item Frequency Tracker**. The program reads a daily purchase log (`CornerGrocerInput.txt`) and calculates how often each item appears. It provides a menu that supports (1) searching for a single item’s frequency, (2) printing all item frequencies, (3) printing a text-based histogram, and (4) exiting. The program also generates a backup file (`frequency.dat`) automatically at startup.  
+
+This project solves a real operational problem: Corner Grocer wants to rearrange the produce section, and frequency data helps inform layout decisions by identifying the most frequently purchased items.
 
 ### What did you do particularly well?
-I did particularly well in **program structure and readability**. I separated responsibilities by keeping `main.cpp` focused on user interaction and control flow while placing file processing, counting, and reporting logic inside the `GroceryTracker` class. I also used `std::map` effectively for frequency counting and implemented input normalization so user searches are case-insensitive and consistent.
+I did particularly well in **code organization and readability**. I separated responsibilities by keeping `main.cpp` focused on user interaction and menu control flow, while the `GroceryTracker` class handled file processing, frequency counting, and reporting outputs. I also used the C++ standard library effectively (`std::map` for frequency tracking) and added normalization (trim + lowercase) so user searches match consistently.
 
 ### Where could you enhance your code? How would these improvements make your code more efficient, secure, and so on?
-I could enhance the program by improving the suggestion/matching logic beyond simple pluralization (adding/removing “s”). Supporting additional common patterns (like `y → ies`) would improve usability without changing stored data. I could also improve output formatting for readability and extend error reporting to provide clearer troubleshooting details. These improvements would make the program more user-friendly, resilient, and easier to maintain.
+I could enhance the code by expanding the suggestion logic beyond simple pluralization (adding/removing “s”) to handle additional common plural forms. I could also strengthen runtime messaging (more descriptive file/path errors) and refine output formatting for readability. These improvements would make the program more user-friendly, more resilient to inconsistent input data, and easier to troubleshoot and maintain.
 
 ### Which pieces of the code did you find most challenging to write, and how did you overcome this? What tools or resources are you adding to your support network?
-The most challenging part was ensuring file paths, build configuration, and multi-file compilation worked reliably (compiling and linking both `.cpp` files into one executable). I overcame this by validating the working directory behavior, ensuring consistent build settings, and testing outputs against known counts. Tools and resources I’m adding to my support network include stronger familiarity with MSVC build workflows, standard library references for containers and file I/O, and a repeatable debugging approach that separates compile, link, and runtime issues.
+The most challenging part was ensuring a reliable workflow for file handling and multi-file compilation (compiling and linking multiple `.cpp` files into one executable). I overcame this by validating working-directory behavior, building incrementally, and verifying outputs against known frequencies. Tools and resources I’m adding to my support network include MSVC/Visual Studio build workflows, standard library documentation for containers and file streams, and a repeatable debugging approach that separates compile, link, and runtime issues.
 
 ### What skills from this project will be particularly transferable to other projects or course work?
-This project strengthened skills that apply directly to other coursework and real-world development:
-- Class design and encapsulation
-- Standard library container usage (`std::map`)
-- File input/output and formatted output generation
+This project reinforced several transferable skills:
+- Designing a class with a clear public interface and private data
+- Using standard library containers (`std::map`) for counting and lookup tasks
+- File input/output with formatted output files
 - Input validation and defensive programming
-- Separation of concerns and modular program structure
+- Separation of concerns to keep code modular and easier to extend
 
 ### How did you make this program maintainable, readable, and adaptable?
-I made the program maintainable by separating the UI/control flow from the business logic, using clear naming conventions, and adding inline comments that explain intent. Centralizing normalization logic prevents duplicated string handling across the program. This structure makes the code adaptable because new features (additional menu options, different output formats, expanded matching rules) can be added inside `GroceryTracker` without rewriting the main menu loop.
+I made the program maintainable by separating UI logic from business logic, using consistent naming conventions, and adding inline comments that explain intent. I centralized input normalization to avoid repeated string-cleaning logic. This structure makes the program adaptable because changes like adding new menu options, adjusting output formatting, or improving matching rules can be implemented within `GroceryTracker` without rewriting the main control flow.
 
 ---
 
